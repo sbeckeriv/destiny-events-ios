@@ -10,6 +10,7 @@ import UIKit
 import Foundation
 class DataViewController: UIViewController , UITableViewDelegate, UITableViewDataSource{
     var items: [String] = []
+var fireItems = Dictionary<String, String>()
     @IBOutlet weak var dataLabel: UILabel!
     var dataObject: AnyObject?
     @IBOutlet weak var tableView: UITableView!
@@ -17,27 +18,7 @@ class DataViewController: UIViewController , UITableViewDelegate, UITableViewDat
     var myRootRef = Firebase(url:"https://dtimer.firebaseio.com/")
     
     override func viewDidLoad() {
-        myRootRef.observeEventType(.Value, withBlock: { snapshot in
-            var now : NSDate
-            for rest in snapshot.children.allObjects as [FDataSnapshot] {
-                let key_date : String = "2015-07-16 03:03:34"
-                var dateFormatter = NSDateFormatter()
-                dateFormatter.dateFormat =
-                    "yyyy-MM-dd HH:mm:ss"
-                var date:NSDate! = dateFormatter.dateFromString(key_date)
-                println(date)
-                if (date != nil){
-                
-                    let elapsedTimeSeconds = NSDate().timeIntervalSinceDate(date)
-                    let minutesLapsed = -1 * (elapsedTimeSeconds/60)
-                    println(minutesLapsed)
-                }
-                println(rest.value)
-                self.items.append("\(rest.key) => \(rest.value)")
-                println(self.items)
-            }
-            self.tableView.reloadData()
-        })
+        loadFromFirebase()
         super.viewDidLoad()
         tableView.delegate = self
         tableView.dataSource = self
@@ -65,10 +46,47 @@ class DataViewController: UIViewController , UITableViewDelegate, UITableViewDat
             self.dataLabel!.text = ""
         }
     }
+    func loadFromFirebase(){
+        myRootRef.observeEventType(.Value, withBlock: { snapshot in
+            self.fireItems.removeAll()
+            var now : NSDate
+            for rest in snapshot.children.allObjects as [FDataSnapshot] {
+                let key_date : String = "2015-07-16 03:03:34"
+                var dateFormatter = NSDateFormatter()
+                dateFormatter.dateFormat =
+                "yyyy-MM-dd HH:mm:ss"
+                var date:NSDate! = dateFormatter.dateFromString(key_date)
+                println(date)
+                if (date != nil){
+                    
+                    let elapsedTimeSeconds = NSDate().timeIntervalSinceDate(date)
+                    let minutesLapsed = -1 * (elapsedTimeSeconds/60)
+                    println(minutesLapsed)
+                }
+                println(rest.value)
+                self.fireItems[rest.key as String] = rest.value as? String
+                println(self.fireItems)
+                self.buildItems()
+            }
+            self.tableView.reloadData()
+        })
+
+    }
+    func buildItems(){
+        self.items.removeAll()
+        for (key, value) in self.fireItems {                println(key)
+            
+            self.items.append("\(key) => \(value)")
+        }
+
+    }
+    
     func refresh(sender:AnyObject)
     {
         dispatch_async(dispatch_get_main_queue()) {
+            self.loadFromFirebase()
             self.tableView.registerClass(UITableViewCell.self, forCellReuseIdentifier: "cell")
+            self.refreshControl.endRefreshing()
 
         }
     }
