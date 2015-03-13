@@ -7,9 +7,9 @@
 //
 
 import UIKit
-
+import Foundation
 class DataViewController: UIViewController , UITableViewDelegate, UITableViewDataSource{
-    var items: [String] = ["We", "Heart", "Swift"]
+    var items: [String] = []
     @IBOutlet weak var dataLabel: UILabel!
     var dataObject: AnyObject?
     @IBOutlet weak var tableView: UITableView!
@@ -17,19 +17,38 @@ class DataViewController: UIViewController , UITableViewDelegate, UITableViewDat
     var myRootRef = Firebase(url:"https://dtimer.firebaseio.com/")
     
     override func viewDidLoad() {
+        myRootRef.observeEventType(.Value, withBlock: { snapshot in
+            var now : NSDate
+            for rest in snapshot.children.allObjects as [FDataSnapshot] {
+                let key_date : String = "2015-07-16 03:03:34"
+                var dateFormatter = NSDateFormatter()
+                dateFormatter.dateFormat =
+                    "yyyy-MM-dd HH:mm:ss"
+                var date:NSDate! = dateFormatter.dateFromString(key_date)
+                println(date)
+                if (date != nil){
+                
+                    let elapsedTimeSeconds = NSDate().timeIntervalSinceDate(date)
+                    let minutesLapsed = -1 * (elapsedTimeSeconds/60)
+                    println(minutesLapsed)
+                }
+                println(rest.value)
+                self.items.append("\(rest.key) => \(rest.value)")
+                println(self.items)
+            }
+            self.tableView.reloadData()
+        })
         super.viewDidLoad()
         tableView.delegate = self
         tableView.dataSource = self
+        
         self.refreshControl = UIRefreshControl()
         self.refreshControl.attributedTitle = NSAttributedString(string: "Pull to refersh")
         self.refreshControl.addTarget(self, action: "refresh:", forControlEvents: UIControlEvents.ValueChanged)
         self.tableView.addSubview(refreshControl)
     
         self.tableView.registerClass(UITableViewCell.self, forCellReuseIdentifier: "cell")
-        myRootRef.observeEventType(.Value, withBlock: {
-            snapshot in
-            println("\(snapshot.key) -> \(snapshot.value)")
-        })
+        
         // Do any additional setup after loading the view, typically from a nib.
     }
 
@@ -41,7 +60,7 @@ class DataViewController: UIViewController , UITableViewDelegate, UITableViewDat
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
         if let obj: AnyObject = dataObject {
-            self.dataLabel!.text = obj.description
+            self.dataLabel!.text = "Public events"
         } else {
             self.dataLabel!.text = ""
         }
@@ -49,6 +68,8 @@ class DataViewController: UIViewController , UITableViewDelegate, UITableViewDat
     func refresh(sender:AnyObject)
     {
         dispatch_async(dispatch_get_main_queue()) {
+            self.tableView.registerClass(UITableViewCell.self, forCellReuseIdentifier: "cell")
+
         }
     }
 
