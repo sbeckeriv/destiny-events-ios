@@ -14,7 +14,8 @@ class DataViewController: UIViewController , UITableViewDelegate, UITableViewDat
     var dataObject: AnyObject?
     @IBOutlet weak var tableView: UITableView!
     var refreshControl:UIRefreshControl!
-
+    var myRootRef = Firebase(url:"https://dtimer.firebaseio.com/")
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         tableView.delegate = self
@@ -23,10 +24,12 @@ class DataViewController: UIViewController , UITableViewDelegate, UITableViewDat
         self.refreshControl.attributedTitle = NSAttributedString(string: "Pull to refersh")
         self.refreshControl.addTarget(self, action: "refresh:", forControlEvents: UIControlEvents.ValueChanged)
         self.tableView.addSubview(refreshControl)
-        let appDelegate =
     
         self.tableView.registerClass(UITableViewCell.self, forCellReuseIdentifier: "cell")
-        
+        myRootRef.observeEventType(.Value, withBlock: {
+            snapshot in
+            println("\(snapshot.key) -> \(snapshot.value)")
+        })
         // Do any additional setup after loading the view, typically from a nib.
     }
 
