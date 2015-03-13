@@ -4,7 +4,17 @@
 <dict>
 	<key>SchemeUserState</key>
 	<dict>
+		<key>Pods-destiny.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
 		<key>Pods-destinyTests.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
+		<key>Pods.xcscheme</key>
 		<dict>
 			<key>isShown</key>
 			<false/>
@@ -12,7 +22,17 @@
 	</dict>
 	<key>SuppressBuildableAutocreation</key>
 	<dict>
-		<key>D9A9664138255E2674D7F558</key>
+		<key>561A798F0090801EDE9769B9</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>5B63DC811E360FDF52EAE8ED</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>A4BAD5B6B9376EA6E5BC4731</key>
 		<dict>
 			<key>primary</key>
 			<true/>

@@ -14,9 +14,9 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "561A798F0090801EDE9769B9"
-               BuildableName = "libPods-destinyTests.a"
-               BlueprintName = "Pods-destinyTests"
+               BlueprintIdentifier = "5B63DC811E360FDF52EAE8ED"
+               BuildableName = "libPods-destiny.a"
+               BlueprintName = "Pods-destiny"
                ReferencedContainer = "container:Pods.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
