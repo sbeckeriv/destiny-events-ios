@@ -6,6 +6,7 @@ target 'destiny' do
 end
 
 target 'destinyTests' do
+  pod 'Firebase', '>= 2.2.0'
 
 end
 
