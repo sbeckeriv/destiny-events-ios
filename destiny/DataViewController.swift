@@ -10,7 +10,7 @@ import UIKit
 import Foundation
 class DataViewController: UIViewController , UITableViewDelegate, UITableViewDataSource{
     var items: [String] = []
-var fireItems = Dictionary<String, String>()
+var fireItems = Dictionary<String, Dictionary<String, AnyObject> >()
     @IBOutlet weak var dataLabel: UILabel!
     var dataObject: AnyObject?
     @IBOutlet weak var tableView: UITableView!
@@ -56,18 +56,15 @@ var fireItems = Dictionary<String, String>()
                 dateFormatter.dateFormat =
                 "yyyy-MM-dd HH:mm:ss"
                 var date:NSDate! = dateFormatter.dateFromString(key_date)
-                println(date)
+                println("-----")
                 if (date != nil){
-                    
                     let elapsedTimeSeconds = NSDate().timeIntervalSinceDate(date)
                     let minutesLapsed = -1 * (elapsedTimeSeconds/60)
-                    println(minutesLapsed)
                 }
                 println(rest.value)
-                self.fireItems[rest.key as String] = rest.value as? String
-                println(self.fireItems)
-                self.buildItems()
+                self.fireItems[rest.key as String] = rest.value as Dictionary
             }
+            self.buildItems()
             self.tableView.reloadData()
         })
 

@@ -18,6 +18,10 @@
 		EE8C36C31AAFFA3500AAE8D1 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = EE8C36C21AAFFA3500AAE8D1 /* Images.xcassets */; };
 		EE8C36C61AAFFA3500AAE8D1 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = EE8C36C41AAFFA3500AAE8D1 /* LaunchScreen.xib */; };
 		EE8C36D21AAFFA3500AAE8D1 /* destinyTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE8C36D11AAFFA3500AAE8D1 /* destinyTests.swift */; };
+		EEC6F4BB1AB384F200E70DE2 /* Duration.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEC6F4B71AB384F200E70DE2 /* Duration.swift */; };
+		EEC6F4BC1AB384F200E70DE2 /* Int+Timepiece.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEC6F4B81AB384F200E70DE2 /* Int+Timepiece.swift */; };
+		EEC6F4BD1AB384F200E70DE2 /* NSDate+Timepiece.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEC6F4B91AB384F200E70DE2 /* NSDate+Timepiece.swift */; };
+		EEC6F4BE1AB384F200E70DE2 /* String+Timepiece.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEC6F4BA1AB384F200E70DE2 /* String+Timepiece.swift */; };
 		EEE6274F1AB2A14200F4754C /* Temp.m in Sources */ = {isa = PBXBuildFile; fileRef = EEE6274E1AB2A14200F4754C /* Temp.m */; };
 /* End PBXBuildFile section */
 
@@ -50,6 +54,10 @@
 		EE8C36CB1AAFFA3500AAE8D1 /* destinyTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = destinyTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		EE8C36D01AAFFA3500AAE8D1 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		EE8C36D11AAFFA3500AAE8D1 /* destinyTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = destinyTests.swift; sourceTree = "<group>"; };
+		EEC6F4B71AB384F200E70DE2 /* Duration.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Duration.swift; sourceTree = "<group>"; };
+		EEC6F4B81AB384F200E70DE2 /* Int+Timepiece.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Int+Timepiece.swift"; sourceTree = "<group>"; };
+		EEC6F4B91AB384F200E70DE2 /* NSDate+Timepiece.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NSDate+Timepiece.swift"; sourceTree = "<group>"; };
+		EEC6F4BA1AB384F200E70DE2 /* String+Timepiece.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "String+Timepiece.swift"; sourceTree = "<group>"; };
 		EEE6274D1AB2A14200F4754C /* destiny-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "destiny-Bridging-Header.h"; sourceTree = "<group>"; };
 		EEE6274E1AB2A14200F4754C /* Temp.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Temp.m; sourceTree = "<group>"; };
 		FBDF6EECAEF62676A06C9A9F /* libPods-destiny.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-destiny.a"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -120,6 +128,10 @@
 		EE8C36B41AAFFA3500AAE8D1 /* destiny */ = {
 			isa = PBXGroup;
 			children = (
+				EEC6F4B71AB384F200E70DE2 /* Duration.swift */,
+				EEC6F4B81AB384F200E70DE2 /* Int+Timepiece.swift */,
+				EEC6F4B91AB384F200E70DE2 /* NSDate+Timepiece.swift */,
+				EEC6F4BA1AB384F200E70DE2 /* String+Timepiece.swift */,
 				EE8C36B71AAFFA3500AAE8D1 /* AppDelegate.swift */,
 				EEE6274E1AB2A14200F4754C /* Temp.m */,
 				EE8C36B91AAFFA3500AAE8D1 /* RootViewController.swift */,
@@ -327,9 +339,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				EEC6F4BE1AB384F200E70DE2 /* String+Timepiece.swift in Sources */,
+				EEC6F4BD1AB384F200E70DE2 /* NSDate+Timepiece.swift in Sources */,
+				EEC6F4BC1AB384F200E70DE2 /* Int+Timepiece.swift in Sources */,
 				EEE6274F1AB2A14200F4754C /* Temp.m in Sources */,
 				EE8C36BA1AAFFA3500AAE8D1 /* RootViewController.swift in Sources */,
 				EE8C36BE1AAFFA3500AAE8D1 /* ModelController.swift in Sources */,
+				EEC6F4BB1AB384F200E70DE2 /* Duration.swift in Sources */,
 				EE8C36BC1AAFFA3500AAE8D1 /* DataViewController.swift in Sources */,
 				EE8C36B81AAFFA3500AAE8D1 /* AppDelegate.swift in Sources */,
 			);
