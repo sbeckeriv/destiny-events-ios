@@ -16,10 +16,10 @@ class CustomTableViewCell: UITableViewCell {
     func loadItem(#data: [String]) {
         if(data.count > 0 ){
             println(data)
-            self.planet.text = "moon"
-            self.location.text = data[0]
-            self.type.text = data[1]
-            self.time.text = data[2]
+            self.planet.text = data[0]
+            self.location.text = data[1]
+            self.type.text = data[2]
+            self.time.text = data[3]
 
         }
     }
@@ -120,6 +120,7 @@ class DataViewController: UIViewController , UITableViewDelegate, UITableViewDat
     }
     func buildItems(){
         self.items.removeAll()
+        var tempItems = [[String]]()
         for (key, value) in self.fireItems {
             
             //
@@ -128,14 +129,17 @@ class DataViewController: UIViewController , UITableViewDelegate, UITableViewDat
             if(value.count>0){
                 for event in value {
                     println(event)
-
-                    self.items.append(event as [String])
+                    var mon = [key] + (event as [String])
+                    tempItems.append(mon as [String])
             //    var j = " ".join(event as [String])
             //    self.items.append("\(key): \(j)")
                 }
            }
         }
-
+        self.items = tempItems.sorted{
+            (arr1, arr2) -> Bool in
+            arr1.last?.toInt() < arr2.last?.toInt()
+        }
     }
     
     func refresh(sender:AnyObject)
