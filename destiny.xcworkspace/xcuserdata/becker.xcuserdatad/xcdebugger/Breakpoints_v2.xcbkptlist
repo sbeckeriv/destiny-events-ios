@@ -10,11 +10,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "destiny/DataViewController.swift"
-            timestampString = "447982091.21081"
+            timestampString = "448060348.083959"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "50"
-            endingLineNumber = "50"
+            startingLineNumber = "73"
+            endingLineNumber = "73"
             landmarkName = "loadFromFirebase()"
             landmarkType = "5">
             <Locations>
@@ -22,29 +22,15 @@
                   shouldBeEnabled = "Yes"
                   ignoreCount = "0"
                   continueAfterRunningActions = "No"
-                  symbolName = "destiny.DataViewController.loadFromFirebase (destiny.DataViewController)() -&gt; ()"
-                  moduleName = "destiny"
-                  urlString = "file:///Users/becker/trash/destiny-events/destiny/destiny/DataViewController.swift"
-                  timestampString = "447985116.475231"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "50"
-                  endingLineNumber = "50"
-                  offsetFromSymbolStart = "15">
-               </Location>
-               <Location
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
                   symbolName = "destiny.DataViewController.(loadFromFirebase (destiny.DataViewController) -&gt; () -&gt; ()).(closure #1)"
                   moduleName = "destiny"
                   urlString = "file:///Users/becker/trash/destiny-events/destiny/destiny/DataViewController.swift"
-                  timestampString = "447985116.475394"
+                  timestampString = "448058504.885114"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "51"
-                  endingLineNumber = "51"
-                  offsetFromSymbolStart = "39">
+                  startingLineNumber = "62"
+                  endingLineNumber = "62"
+                  offsetFromSymbolStart = "40">
                </Location>
                <Location
                   shouldBeEnabled = "Yes"
@@ -53,11 +39,11 @@
                   symbolName = "reabstraction thunk helper from @callee_owned (@owned Swift.ImplicitlyUnwrappedOptional&lt;ObjectiveC.FDataSnapshot&gt;) -&gt; (@unowned ()) to @callee_owned (@in Swift.ImplicitlyUnwrappedOptional&lt;ObjectiveC.FDataSnapshot&gt;) -&gt; (@out ())"
                   moduleName = "destiny"
                   urlString = "file:///Users/becker/trash/destiny-events/destiny/destiny/DataViewController.swift"
-                  timestampString = "447985116.47552"
+                  timestampString = "448058504.885323"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "50"
-                  endingLineNumber = "50"
+                  startingLineNumber = "61"
+                  endingLineNumber = "61"
                   offsetFromSymbolStart = "4">
                </Location>
                <Location
@@ -67,11 +53,11 @@
                   symbolName = "reabstraction thunk helper from @callee_owned (@in Swift.ImplicitlyUnwrappedOptional&lt;ObjectiveC.FDataSnapshot&gt;) -&gt; (@out ()) to @callee_owned (@owned Swift.ImplicitlyUnwrappedOptional&lt;ObjectiveC.FDataSnapshot&gt;) -&gt; (@unowned ())"
                   moduleName = "destiny"
                   urlString = "file:///Users/becker/trash/destiny-events/destiny/destiny/DataViewController.swift"
-                  timestampString = "447985116.475648"
+                  timestampString = "448058504.885499"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "50"
-                  endingLineNumber = "50"
+                  startingLineNumber = "61"
+                  endingLineNumber = "61"
                   offsetFromSymbolStart = "12">
                </Location>
                <Location
@@ -81,11 +67,11 @@
                   symbolName = "reabstraction thunk helper from @callee_owned (@owned Swift.ImplicitlyUnwrappedOptional&lt;ObjectiveC.FDataSnapshot&gt;) -&gt; (@unowned ()) to @callee_unowned @objc_block (@unowned Swift.ImplicitlyUnwrappedOptional&lt;ObjectiveC.FDataSnapshot&gt;) -&gt; (@unowned ())"
                   moduleName = "destiny"
                   urlString = "file:///Users/becker/trash/destiny-events/destiny/destiny/DataViewController.swift"
-                  timestampString = "447985116.475772"
+                  timestampString = "448058504.885668"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "50"
-                  endingLineNumber = "50"
+                  startingLineNumber = "61"
+                  endingLineNumber = "61"
                   offsetFromSymbolStart = "4">
                </Location>
             </Locations>
@@ -98,11 +84,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "destiny/DataViewController.swift"
-            timestampString = "447985945.455936"
+            timestampString = "448060348.083959"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "70"
-            endingLineNumber = "70"
+            startingLineNumber = "93"
+            endingLineNumber = "93"
             landmarkName = "loadFromFirebase()"
             landmarkType = "5">
          </BreakpointContent>
@@ -114,11 +100,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "destiny/DataViewController.swift"
-            timestampString = "447985945.455936"
+            timestampString = "448060348.083959"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "71"
-            endingLineNumber = "71"
+            startingLineNumber = "94"
+            endingLineNumber = "94"
             landmarkName = "loadFromFirebase()"
             landmarkType = "5">
          </BreakpointContent>
@@ -130,12 +116,114 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "destiny/DataViewController.swift"
-            timestampString = "447985945.455936"
+            timestampString = "448056876.194334"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "83"
-            endingLineNumber = "83"
-            landmarkName = "loadFromFirebase()"
+            startingLineNumber = "8"
+            endingLineNumber = "8"
+            landmarkName = "CustomTableViewCell"
+            landmarkType = "3">
+            <Locations>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "destiny.CustomTableViewCell.backgroundImage.getter : Swift.ImplicitlyUnwrappedOptional&lt;ObjectiveC.UIImageView&gt;"
+                  moduleName = "destiny"
+                  urlString = "file:///Users/becker/trash/destiny-events/destiny/destiny/DataViewController.swift"
+                  timestampString = "448058504.88799"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "0"
+                  endingLineNumber = "0"
+                  offsetFromSymbolStart = "12">
+               </Location>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "destiny.CustomTableViewCell.backgroundImage.setter : Swift.ImplicitlyUnwrappedOptional&lt;ObjectiveC.UIImageView&gt;"
+                  moduleName = "destiny"
+                  urlString = "file:///Users/becker/trash/destiny-events/destiny/destiny/DataViewController.swift"
+                  timestampString = "448058504.888177"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "0"
+                  endingLineNumber = "0"
+                  offsetFromSymbolStart = "16">
+               </Location>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "destiny.CustomTableViewCell.init (destiny.CustomTableViewCell.Type)(style : C.UITableViewCellStyle, reuseIdentifier : Swift.Optional&lt;Swift.String&gt;) -&gt; destiny.CustomTableViewCell"
+                  moduleName = "destiny"
+                  urlString = "file:///Users/becker/trash/destiny-events/destiny/destiny/DataViewController.swift"
+                  timestampString = "448058504.888494"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "9"
+                  endingLineNumber = "9"
+                  offsetFromSymbolStart = "53">
+               </Location>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "destiny.CustomTableViewCell.init (destiny.CustomTableViewCell.Type)(frame : C.CGRect) -&gt; destiny.CustomTableViewCell"
+                  moduleName = "destiny"
+                  urlString = "file:///Users/becker/trash/destiny-events/destiny/destiny/DataViewController.swift"
+                  timestampString = "448058504.888635"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "9"
+                  endingLineNumber = "9"
+                  offsetFromSymbolStart = "47">
+               </Location>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "destiny.CustomTableViewCell.init (destiny.CustomTableViewCell.Type)() -&gt; destiny.CustomTableViewCell"
+                  moduleName = "destiny"
+                  urlString = "file:///Users/becker/trash/destiny-events/destiny/destiny/DataViewController.swift"
+                  timestampString = "448058504.888773"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "9"
+                  endingLineNumber = "9"
+                  offsetFromSymbolStart = "24">
+               </Location>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "destiny.CustomTableViewCell.init (destiny.CustomTableViewCell.Type)(coder : ObjectiveC.NSCoder) -&gt; destiny.CustomTableViewCell"
+                  moduleName = "destiny"
+                  urlString = "file:///Users/becker/trash/destiny-events/destiny/destiny/DataViewController.swift"
+                  timestampString = "448058504.888911"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "9"
+                  endingLineNumber = "9"
+                  offsetFromSymbolStart = "28">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "destiny/DataViewController.swift"
+            timestampString = "448060348.083959"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "145"
+            endingLineNumber = "145"
+            landmarkName = "refresh(_:)"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>

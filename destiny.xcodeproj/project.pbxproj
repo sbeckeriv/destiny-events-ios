@@ -23,6 +23,7 @@
 		EEC6F4BD1AB384F200E70DE2 /* NSDate+Timepiece.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEC6F4B91AB384F200E70DE2 /* NSDate+Timepiece.swift */; };
 		EEC6F4BE1AB384F200E70DE2 /* String+Timepiece.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEC6F4BA1AB384F200E70DE2 /* String+Timepiece.swift */; };
 		EEE6274F1AB2A14200F4754C /* Temp.m in Sources */ = {isa = PBXBuildFile; fileRef = EEE6274E1AB2A14200F4754C /* Temp.m */; };
+		EEF96A761AB4C7EF005F0612 /* CustomTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = EEF96A751AB4C7EF005F0612 /* CustomTableViewCell.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -60,6 +61,7 @@
 		EEC6F4BA1AB384F200E70DE2 /* String+Timepiece.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "String+Timepiece.swift"; sourceTree = "<group>"; };
 		EEE6274D1AB2A14200F4754C /* destiny-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "destiny-Bridging-Header.h"; sourceTree = "<group>"; };
 		EEE6274E1AB2A14200F4754C /* Temp.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Temp.m; sourceTree = "<group>"; };
+		EEF96A751AB4C7EF005F0612 /* CustomTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CustomTableViewCell.xib; sourceTree = "<group>"; };
 		FBDF6EECAEF62676A06C9A9F /* libPods-destiny.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-destiny.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -142,6 +144,7 @@
 				EE8C36C41AAFFA3500AAE8D1 /* LaunchScreen.xib */,
 				EE8C36B51AAFFA3500AAE8D1 /* Supporting Files */,
 				EEE6274D1AB2A14200F4754C /* destiny-Bridging-Header.h */,
+				EEF96A751AB4C7EF005F0612 /* CustomTableViewCell.xib */,
 			);
 			path = destiny;
 			sourceTree = "<group>";
@@ -258,6 +261,7 @@
 			files = (
 				EE8C36C11AAFFA3500AAE8D1 /* Main.storyboard in Resources */,
 				EE8C36C61AAFFA3500AAE8D1 /* LaunchScreen.xib in Resources */,
+				EEF96A761AB4C7EF005F0612 /* CustomTableViewCell.xib in Resources */,
 				EE8C36C31AAFFA3500AAE8D1 /* Images.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

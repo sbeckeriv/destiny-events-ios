@@ -5,11 +5,30 @@
 //  Created by becker on 3/10/15.
 //  Copyright (c) 2015 becker. All rights reserved.
 //
+class CustomTableViewCell: UITableViewCell {
+    @IBOutlet var planet: UILabel!
+    @IBOutlet var type: UILabel!
+
+    @IBOutlet var location: UILabel!
+
+    @IBOutlet var time: UILabel!
+
+    func loadItem(#data: [String]) {
+        if(data.count > 0 ){
+            println(data)
+            self.planet.text = "moon"
+            self.location.text = data[0]
+            self.type.text = data[1]
+            self.time.text = data[2]
+
+        }
+    }
+}
 
 import UIKit
 import Foundation
 class DataViewController: UIViewController , UITableViewDelegate, UITableViewDataSource{
-    var items: [String] = []
+    var items: [[String]] = []
     var fireItems = [String: [AnyObject]]()
     @IBOutlet weak var dataLabel: UILabel!
     var dataObject: AnyObject?
@@ -29,6 +48,10 @@ class DataViewController: UIViewController , UITableViewDelegate, UITableViewDat
         self.tableView.addSubview(refreshControl)
     
         self.tableView.registerClass(UITableViewCell.self, forCellReuseIdentifier: "cell")
+        
+        var nib = UINib(nibName: "CustomTableViewCell", bundle: nil)
+        
+        tableView.registerNib(nib, forCellReuseIdentifier: "customCell")
         
         // Do any additional setup after loading the view, typically from a nib.
     }
@@ -68,12 +91,12 @@ class DataViewController: UIViewController , UITableViewDelegate, UITableViewDat
                     if(child.key == "mapLocations"){
                         println(child.children.allObjects as [FDataSnapshot])
                         for events in child.children.allObjects as [FDataSnapshot]{
-                            
+                            // would love to use a dict here but fuck if i cant figure them out.
                             var event = [String]()
                             var types:[String] = events.value["eventTypes"] as [String]
                             
                             event.append(events.value["title"] as String)
-                            //event.append("|".join(types))
+                            event.append("|".join(types))
                             var time = events.value["start"] as String
                             var now = NSDate()
                             var timeInt:Int! = time.toInt()
@@ -81,6 +104,8 @@ class DataViewController: UIViewController , UITableViewDelegate, UITableViewDat
                             let elapsedTimeSeconds = NSDate().timeIntervalSinceDate(date)
                             let minutesLapsed = -1 * (elapsedTimeSeconds/60)
                             event.append("\(Int(minutesLapsed)) minutes")
+                            event.append(time) //always last item for sorting
+
                             eventList.append(event)
                         }
                     }
@@ -96,14 +121,19 @@ class DataViewController: UIViewController , UITableViewDelegate, UITableViewDat
     func buildItems(){
         self.items.removeAll()
         for (key, value) in self.fireItems {
+            
+            //
             println(key)
             println(value)
             if(value.count>0){
                 for event in value {
-                var j = " ".join(event as [String])
-                self.items.append("\(key): \(j)")
+                    println(event)
+
+                    self.items.append(event as [String])
+            //    var j = " ".join(event as [String])
+            //    self.items.append("\(key): \(j)")
                 }
-            }
+           }
         }
 
     }
@@ -123,9 +153,11 @@ class DataViewController: UIViewController , UITableViewDelegate, UITableViewDat
     }
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        var cell:UITableViewCell = self.tableView.dequeueReusableCellWithIdentifier("cell") as UITableViewCell
-        
-        cell.textLabel?.text = self.items[indexPath.row]
+        var cell:CustomTableViewCell = self.tableView.dequeueReusableCellWithIdentifier("customCell") as CustomTableViewCell
+
+        //var cell:UITableViewCell = self.tableView.dequeueReusableCellWithIdentifier("cell") as UITableViewCell
+        cell.loadItem(data: self.items[indexPath.row])
+        //cell.textLabel?.text = self.items[indexPath.row]
         
         return cell
     }
