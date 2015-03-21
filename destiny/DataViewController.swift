@@ -8,11 +8,11 @@
 class CustomTableViewCell: UITableViewCell {
     @IBOutlet var planet: UILabel!
     @IBOutlet var type: UILabel!
-
+    
     @IBOutlet var location: UILabel!
-
+    
     @IBOutlet var time: UILabel!
-
+    
     func loadItem(#data: [String]) {
         if(data.count > 0 ){
             println(data)
@@ -20,7 +20,7 @@ class CustomTableViewCell: UITableViewCell {
             self.location.text = data[1]
             self.type.text = data[2]
             self.time.text = data[3]
-
+            
         }
     }
 }
@@ -29,6 +29,7 @@ import UIKit
 import Foundation
 class DataViewController: UIViewController , UITableViewDelegate, UITableViewDataSource{
     var items: [[String]] = []
+    var itemsRequestDate = NSDate();
     var fireItems = [String: [AnyObject]]()
     @IBOutlet weak var dataLabel: UILabel!
     var dataObject: AnyObject?
@@ -46,7 +47,7 @@ class DataViewController: UIViewController , UITableViewDelegate, UITableViewDat
         self.refreshControl.attributedTitle = NSAttributedString(string: "Pull to refersh")
         self.refreshControl.addTarget(self, action: "refresh:", forControlEvents: UIControlEvents.ValueChanged)
         self.tableView.addSubview(refreshControl)
-    
+        
         self.tableView.registerClass(UITableViewCell.self, forCellReuseIdentifier: "cell")
         
         var nib = UINib(nibName: "CustomTableViewCell", bundle: nil)
@@ -55,12 +56,12 @@ class DataViewController: UIViewController , UITableViewDelegate, UITableViewDat
         
         // Do any additional setup after loading the view, typically from a nib.
     }
-
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
-
+    
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
         if let obj: AnyObject = dataObject {
@@ -71,52 +72,56 @@ class DataViewController: UIViewController , UITableViewDelegate, UITableViewDat
     }
     func loadFromFirebase(){
         myRootRef.observeEventType(.Value, withBlock: { snapshot in
-            self.fireItems.removeAll()
-            for rest in snapshot.children.allObjects as [FDataSnapshot] {
-                let key_date : String = "2015-07-16 03:03:34"
-                var dateFormatter = NSDateFormatter()
-                dateFormatter.dateFormat =
-                "yyyy-MM-dd HH:mm:ss"
-                var date:NSDate! = dateFormatter.dateFromString(key_date)
-                if (date != nil){
-                    let elapsedTimeSeconds = NSDate().timeIntervalSinceDate(date)
-                    let minutesLapsed = -1 * (elapsedTimeSeconds/60)
-                }
-                var planetName = ""
-                var eventList = [[String]]()
-                for child in rest.children.allObjects as [FDataSnapshot]{
-                    if (child.key == "planetName"){
-                        planetName = child.value as String
-                    }
-                    if(child.key == "mapLocations"){
-                        println(child.children.allObjects as [FDataSnapshot])
-                        for events in child.children.allObjects as [FDataSnapshot]{
-                            // would love to use a dict here but fuck if i cant figure them out.
-                            var event = [String]()
-                            var types:[String] = events.value["eventTypes"] as [String]
-                            
-                            event.append(events.value["title"] as String)
-                            event.append("|".join(types))
-                            var time = events.value["start"] as String
-                            var now = NSDate()
-                            var timeInt:Int! = time.toInt()
-                            var date = now + timeInt.seconds
-                            let elapsedTimeSeconds = NSDate().timeIntervalSinceDate(date)
-                            let minutesLapsed = -1 * (elapsedTimeSeconds/60)
-                            event.append("\(Int(minutesLapsed)) minutes")
-                            event.append(time) //always last item for sorting
-
-                            eventList.append(event)
+            println(snapshot.children.allObjects)
+            if (snapshot.children.allObjects.count > 0){
+                self.fireItems.removeAll()
+                
+                var epoch = snapshot.children.allObjects[0] as FDataSnapshot
+                
+                var epochString = epoch.value as Int
+                
+                var epochTime = NSTimeInterval(epochString)
+                self.itemsRequestDate = NSDate(timeIntervalSince1970: epochTime)
+                var kids = snapshot.children.allObjects[1] as FDataSnapshot
+                for rest in kids.children.allObjects as [FDataSnapshot] {
+                    
+                    var elapsedTimeSeconds = NSDate().timeIntervalSinceDate(self.itemsRequestDate)
+                    var requestSecondsLapsed:Int = Int(1 * (elapsedTimeSeconds))
+                    println(requestSecondsLapsed)
+                    var planetName = ""
+                    var eventList = [[String]]()
+                    for child in rest.children.allObjects as [FDataSnapshot]{
+                        if (child.key == "planetName"){
+                            planetName = child.value as String
+                        }
+                        if(child.key == "mapLocations"){
+                            for events in child.children.allObjects as [FDataSnapshot]{
+                                // would love to use a dict here but fuck if i cant figure them out.
+                                var event = [String]()
+                                var types:[String] = events.value["eventTypes"] as [String]
+                                
+                                event.append(events.value["title"] as String)
+                                event.append("|".join(types))
+                                var time = events.value["start"] as String
+                                var now = NSDate()
+                                var timeInt:Int! = time.toInt()! - requestSecondsLapsed
+                                var date = now + timeInt.seconds
+                                let elapsedTimeSeconds = NSDate().timeIntervalSinceDate(date)
+                                let minutesLapsed = -1 * (elapsedTimeSeconds/60)
+                                event.append("\(Int(minutesLapsed)) minutes")
+                                event.append(time) //always last item for sorting
+                                
+                                eventList.append(event)
+                            }
                         }
                     }
+                    self.fireItems[planetName as String] = eventList
                 }
-                println(planetName)
-                self.fireItems[planetName as String] = eventList
+                self.buildItems()
+                self.tableView.reloadData()
             }
-            self.buildItems()
-            self.tableView.reloadData()
         })
-
+        
     }
     func buildItems(){
         self.items.removeAll()
@@ -131,10 +136,10 @@ class DataViewController: UIViewController , UITableViewDelegate, UITableViewDat
                     println(event)
                     var mon = [key] + (event as [String])
                     tempItems.append(mon as [String])
-            //    var j = " ".join(event as [String])
-            //    self.items.append("\(key): \(j)")
+                    //    var j = " ".join(event as [String])
+                    //    self.items.append("\(key): \(j)")
                 }
-           }
+            }
         }
         self.items = tempItems.sorted{
             (arr1, arr2) -> Bool in
@@ -148,17 +153,17 @@ class DataViewController: UIViewController , UITableViewDelegate, UITableViewDat
             self.loadFromFirebase()
             self.tableView.registerClass(UITableViewCell.self, forCellReuseIdentifier: "cell")
             self.refreshControl.endRefreshing()
-
+            
         }
     }
-
+    
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return self.items.count;
     }
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         var cell:CustomTableViewCell = self.tableView.dequeueReusableCellWithIdentifier("customCell") as CustomTableViewCell
-
+        
         //var cell:UITableViewCell = self.tableView.dequeueReusableCellWithIdentifier("cell") as UITableViewCell
         cell.loadItem(data: self.items[indexPath.row])
         //cell.textLabel?.text = self.items[indexPath.row]
@@ -169,6 +174,6 @@ class DataViewController: UIViewController , UITableViewDelegate, UITableViewDat
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         
     }
-
+    
 }
 
