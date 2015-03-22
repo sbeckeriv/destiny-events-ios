@@ -7,3 +7,5 @@ curl http://destinypublicevents.com/ws/timerjson.php>~/tmp/temp.json && cat ~/tm
 
 
 Second IOS app. First with firebase. its a good example on how not to do it. 
+
+![iphone](https://raw.githubusercontent.com/sbeckeriv/destiny-events-ios/master/iphone.png)
