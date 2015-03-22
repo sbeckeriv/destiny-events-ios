@@ -8,20 +8,39 @@
 class CustomTableViewCell: UITableViewCell {
     @IBOutlet var planet: UILabel!
     @IBOutlet var type: UILabel!
-    
     @IBOutlet var location: UILabel!
-    
     @IBOutlet var time: UILabel!
+    var start = ""
+    var itemsRequestDate = NSDate();
+    var timer:NSTimer = NSTimer();
+    var startTime = NSTimeInterval()
     
     func loadItem(#data: [String]) {
         if(data.count > 0 ){
-            println(data)
             self.planet.text = data[0]
             self.location.text = data[1]
             self.type.text = data[2]
             self.time.text = data[3]
-            
+            var epochTime = NSTimeInterval(data[4].toInt()!)
+            self.itemsRequestDate = NSDate(timeIntervalSince1970: epochTime)
+            let aSelector : Selector = "updateTime"
+            timer = NSTimer.scheduledTimerWithTimeInterval(0.5, target: self, selector: aSelector, userInfo: nil, repeats: true)
+            self.start = data.last!
         }
+    }
+    
+    func updateTime(){
+        var elapsedSeconds = NSDate().timeIntervalSinceDate(self.itemsRequestDate)
+        var requestSecondsLapsed:Int = Int(1 * (elapsedSeconds))
+        var time = self.start
+        var now = NSDate()
+        var timeInt:Int! = time.toInt()! - requestSecondsLapsed
+        var date = now + timeInt.seconds
+        let elapsedTimeSeconds = NSDate().timeIntervalSinceDate(date)
+        let minutesLapsed = -1 * (elapsedTimeSeconds/60)
+      
+        self.time.text = "\(Int(minutesLapsed)) minutes"
+
     }
 }
 
@@ -109,8 +128,9 @@ class DataViewController: UIViewController , UITableViewDelegate, UITableViewDat
                                 let elapsedTimeSeconds = NSDate().timeIntervalSinceDate(date)
                                 let minutesLapsed = -1 * (elapsedTimeSeconds/60)
                                 event.append("\(Int(minutesLapsed)) minutes")
-                                event.append(time) //always last item for sorting
+                                event.append("\(epochString)")
                                 
+                                event.append(time) //always last item for sorting
                                 eventList.append(event)
                             }
                         }
