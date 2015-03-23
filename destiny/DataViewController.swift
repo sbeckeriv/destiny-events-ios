@@ -11,21 +11,21 @@ class CustomTableViewCell: UITableViewCell {
     @IBOutlet var location: UILabel!
     @IBOutlet var time: UILabel!
     var start = 1
-    var itemsRequestDate = NSDate();
-    var timer:NSTimer = NSTimer();
+    var itemsRequestDate = NSDate()
+    var timer:NSTimer = NSTimer()
     var startTime = NSTimeInterval()
     
     func loadItem(#data: [String: AnyObject]) {
-            println(data)
-            self.planet.text = data["planet"] as String
-            self.location.text = data["title"] as String
-            self.type.text = data["types"] as String
-            self.time.text = data["time"] as String
-            var epochTime = NSTimeInterval(data["requestTime"] as Int)
-            self.itemsRequestDate = NSDate(timeIntervalSince1970: epochTime)
-            let aSelector : Selector = "updateTime"
-            timer = NSTimer.scheduledTimerWithTimeInterval(0.5, target: self, selector: aSelector, userInfo: nil, repeats: true)
-            self.start = data["remaining"] as Int
+        println(data)
+        self.planet.text = data["planet"] as String
+        self.location.text = data["title"] as String
+        self.type.text = data["types"] as String
+        self.time.text = data["time"] as String
+        var epochTime = NSTimeInterval(data["requestTime"] as Int)
+        self.itemsRequestDate = NSDate(timeIntervalSince1970: epochTime)
+        let aSelector : Selector = "updateTime"
+        timer = NSTimer.scheduledTimerWithTimeInterval(0.5, target: self, selector: aSelector, userInfo: nil, repeats: true)
+        self.start = data["remaining"] as Int
     }
     
     func updateTime(){
@@ -37,17 +37,15 @@ class CustomTableViewCell: UITableViewCell {
         var date = now + timeInt.seconds
         let elapsedTimeSeconds = NSDate().timeIntervalSinceDate(date)
         let minutesLapsed = -1 * (elapsedTimeSeconds/60)
-      
         self.time.text = "\(Int(minutesLapsed)) minutes"
-
     }
 }
 
 import UIKit
 import Foundation
 class DataViewController: UIViewController , UITableViewDelegate, UITableViewDataSource{
-    var items = [[String: AnyObject]]();
-    var itemsRequestDate = NSDate();
+    var items = [[String: AnyObject]]()
+    var itemsRequestDate = NSDate()
     var fireItems = [String: [[String: AnyObject]]]()
     @IBOutlet weak var dataLabel: UILabel!
     var dataObject: AnyObject?
@@ -65,14 +63,10 @@ class DataViewController: UIViewController , UITableViewDelegate, UITableViewDat
         self.refreshControl.attributedTitle = NSAttributedString(string: "Pull to refersh")
         self.refreshControl.addTarget(self, action: "refresh:", forControlEvents: UIControlEvents.ValueChanged)
         self.tableView.addSubview(refreshControl)
-        
         self.tableView.registerClass(UITableViewCell.self, forCellReuseIdentifier: "cell")
         
         var nib = UINib(nibName: "CustomTableViewCell", bundle: nil)
-        
         tableView.registerNib(nib, forCellReuseIdentifier: "customCell")
-        
-        // Do any additional setup after loading the view, typically from a nib.
     }
     
     override func didReceiveMemoryWarning() {
@@ -115,10 +109,8 @@ class DataViewController: UIViewController , UITableViewDelegate, UITableViewDat
                                 // would love to use a dict here but fuck if i cant figure them out.
                                 var event = [String: AnyObject]()
                                 var types:[String] = events.value["eventTypes"] as [String]
-                                
                                 event["title"] = (events.value["title"] as String)
                                 event["types"] = "|".join(types)
-                                println( events.value["start"])
                                 var time = (events.value["start"] as String).toInt()
                                 var now = NSDate()
                                 var timeInt:Int = time! - requestSecondsLapsed
@@ -138,20 +130,22 @@ class DataViewController: UIViewController , UITableViewDelegate, UITableViewDat
                 self.tableView.reloadData()
             }
         })
-        
     }
+    
     func buildItems(){
         self.items.removeAll()
         var tempItems = [[String: AnyObject]]()
         for (key, value) in self.fireItems {
             if(value.count > 0){
+                // Add planet and convert to an array
                 for event in value {
-                    var t = event;
+                    var t = event
                     t["planet"] = key
                     tempItems.append(t)
                 }
             }
         }
+        //Sort for display
         self.items = tempItems.sorted{
             (i1: [String: AnyObject], i2: [String: AnyObject]) -> Bool in
             return (i1["remaining"] as Int) < (i2["remaining"] as Int)
@@ -164,7 +158,6 @@ class DataViewController: UIViewController , UITableViewDelegate, UITableViewDat
             self.loadFromFirebase()
             self.tableView.registerClass(UITableViewCell.self, forCellReuseIdentifier: "cell")
             self.refreshControl.endRefreshing()
-            
         }
     }
     
@@ -183,8 +176,6 @@ class DataViewController: UIViewController , UITableViewDelegate, UITableViewDat
     }
     
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-        
     }
     
 }
-
